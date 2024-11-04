@@ -8,6 +8,8 @@ VOLUME /code
 # Установка зависимостей
 RUN apt-get update && apt-get install -y \
     libmemcached-dev \
+    libc-client-dev \
+    libcurl4-openssl-dev \
     zlib1g-dev \
     zip \
     unzip
@@ -16,7 +18,7 @@ RUN apt-get update && apt-get install -y \
 #RUN pecl channel-update pecl.php.net
 
 # Установка и активация расширения memcache
-RUN pecl install memcache && docker-php-ext-enable memcache
+RUN pecl install memcached && docker-php-ext-enable memcached
 
 RUN pecl install xdebug \
   pecl install xdebug && docker-php-ext-enable xdebug

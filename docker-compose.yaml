@@ -50,8 +50,8 @@ services:
   laravel-app_memcache:
     image: memcached:latest
     container_name: laravel-app_memcached
-    ports:
-      - "11211:11211"
+#    ports:
+#      - "11211:11211"
     command: memcached -m 64
     networks:
       - laravel-app_app-network
@@ -66,8 +66,8 @@ services:
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-    ports:
-      - "3310:3306"
+ #   ports:
+ #     - "3306:3306"
     volumes:
       - ./db:/var/lib/mysql
     networks:
