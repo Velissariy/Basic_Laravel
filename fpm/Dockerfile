@@ -1,0 +1,35 @@
+FROM php:8.2-fpm
+
+COPY ./zz-docker.conf /usr/local/etc/php-fpm.d/zz-docker.conf
+COPY ./php.ini /usr/local/etc/php/conf.d/php-custom.ini
+
+VOLUME /code
+
+# Установка зависимостей
+RUN apt-get update && apt-get install -y \
+    libmemcached-dev \
+    zlib1g-dev \
+    zip \
+    unzip
+
+# Обновление канала PECL
+#RUN pecl channel-update pecl.php.net
+
+# Установка и активация расширения memcache
+RUN pecl install memcache && docker-php-ext-enable memcache
+
+RUN pecl install xdebug \
+  pecl install xdebug && docker-php-ext-enable xdebug
+
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Разрешаем запуск Composer от суперпользователя
+ENV COMPOSER_ALLOW_SUPERUSER 1
+
+# Установка расширений PDO
+RUN docker-php-ext-install pdo pdo_mysql
+
+WORKDIR /code
+
+CMD ["php-fpm"]
