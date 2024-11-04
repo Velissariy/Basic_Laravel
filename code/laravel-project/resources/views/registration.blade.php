@@ -4,6 +4,17 @@
     <div class="container">
         <h1>Добавить пользователя</h1>
 
+        <!-- Проверка на наличие ошибок валидации -->
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form action="{{ route('user.store') }}" method="POST">
             @csrf
 
@@ -20,11 +31,6 @@
             <div class="form-group">
                 <label for="email">Электронная почта</label>
                 <input type="email" id="email" name="email" class="form-control" required>
-            </div>
-
-            <div class="form-group">
-                <label for="username">Логин</label>
-                <input type="text" id="username" name="username" class="form-control" required>
             </div>
 
             <div class="form-group">
