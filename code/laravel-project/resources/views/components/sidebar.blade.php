@@ -10,5 +10,8 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ route('contacts') }}">Контакты</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('log-request') }}">Лог запросов</a>
+        </li>
     </ul>
 </nav>
