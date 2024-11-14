@@ -13,5 +13,8 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ route('log-request') }}">Лог запросов</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('book.list') }}">Список книг</a>
+        </li>
     </ul>
 </nav>
