@@ -45,7 +45,6 @@
                 <option value="romance" {{ old('genre') == 'romance' ? 'selected' : '' }}>Романтика</option>
                 <option value="mystery" {{ old('genre') == 'mystery' ? 'selected' : '' }}>Детектив</option>
                 <option value="non-fiction" {{ old('genre') == 'non-fiction' ? 'selected' : '' }}>Документальная</option>
-                <!-- Добавьте другие жанры по необходимости -->
             </select>
             @error('genre')
             <div style="color: red;">{{ $message }}</div>

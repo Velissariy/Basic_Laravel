@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->timestamp('time');
             $table->integer('duration');
-            $table->ipAddress('IP');
-            $table->string('url');
-            $table->string('method');
+            $table->ipAddress('IP')->index();
+            $table->string('url')->nullable();
+            $table->string('method')->nullable();
             $table->json('input');
             $table->timestamps();
-            $table->integer('user_id');
+            $table->integer('user_id')->nullable();
         });
     }
 

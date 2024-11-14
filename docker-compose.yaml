@@ -34,6 +34,8 @@ services:
     depends_on:
       - laravel-app_database
       - laravel-app_memcache
+    environment:
+      - PHP_IDE_CONFIG=serverName=IDE
 
   #  php-cli:
   #    build:
@@ -66,8 +68,8 @@ services:
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
- #   ports:
- #     - "3306:3306"
+    ports:
+      - "3307:3306"
     volumes:
       - ./db:/var/lib/mysql
     networks:
