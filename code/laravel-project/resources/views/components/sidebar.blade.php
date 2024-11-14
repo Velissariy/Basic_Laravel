@@ -16,5 +16,8 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ route('book.list') }}">Список книг</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('news.list') }}">Новости</a>
+        </li>
     </ul>
 </nav>
