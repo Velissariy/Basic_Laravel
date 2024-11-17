@@ -26,6 +26,8 @@ services:
       dockerfile: Dockerfile
     image: myapp/php
     container_name: laravel-app_app
+    ports:
+      - "5173:5173"
     volumes:
       - ./code:/code/
       - ./phpsocket:/run
