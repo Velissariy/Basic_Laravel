@@ -22,6 +22,6 @@ class SendNewsHiddennedNotification
      */
     public function handle(NewsHiddenned $event): void
     {
-        Log::info('Новость скрыта: ' . $event->news->title);
+        Log::info('Новая новость создана: ' . $event->news->title);
     }
 }
