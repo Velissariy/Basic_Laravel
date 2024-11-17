@@ -34,6 +34,11 @@ class LogRequestMiddleware {
                 'input' => json_encode($request->all()),
                 'user_id' => Auth::id(),
             ]);
+
+            // лучше очищать логи фоново через запланированные задания
+            $days = 30; // Количество дней для хранения записей
+            $date = now()->subDays($days);
+            Log::where('created_at', '<', $date)->delete();
         }
     }
 }

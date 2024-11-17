@@ -12,7 +12,9 @@ RUN apt-get update && apt-get install -y \
     libcurl4-openssl-dev \
     zlib1g-dev \
     zip \
-    unzip
+    unzip \
+    cron \
+    nano
 
 # Обновление канала PECL
 #RUN pecl channel-update pecl.php.net
