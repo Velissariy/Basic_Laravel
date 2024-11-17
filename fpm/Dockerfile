@@ -16,6 +16,19 @@ RUN apt-get update && apt-get install -y \
     cron \
     nano
 
+# Устанавливаем зависимости для npm (curl и Node.js)
+RUN apt-get update && apt-get install -y \
+    curl \
+    gnupg2 \
+    lsb-release \
+    apt-transport-https \
+    ca-certificates
+
+# Добавляем репозиторий Node.js и устанавливаем его
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+    && apt-get install -y nodejs \
+    && apt-get clean
+
 # Обновление канала PECL
 #RUN pecl channel-update pecl.php.net
 
