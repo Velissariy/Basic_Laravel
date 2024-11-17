@@ -4,9 +4,10 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\LogRequestController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PdfGeneratorController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PdfGeneratorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,22 +24,23 @@ Route::get('/', function () {
     return view('main');
 })->name('home');
 
-Route::get('/users', [UserController::class, 'showList'])->name('users');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/register', [PageController::class, 'registration'])->name('register');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-Route::post('/user', [UserController::class, 'store'])->name('user.store');
+Route::get('/users', [UserController::class, 'index'])->name('users');
 
 Route::get('/contacts', [PageController::class, 'contacts'])->name('contacts');
 
-Route::get('/login', [PageController::class, 'login'])->name('login');
-Route::post('/login', [UserController::class, 'login'])->name('user.login');
-
-Route::get('/logout', [UserController::class, 'logout'])->name('user.logout');
-
-Route::get('/user/{id}', [UserController::class, 'profile'])->name('user.profile');
-Route::get('/user/edit/{id}', [UserController::class, 'editProfile'])->name('edit.profile');
-Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
+//Route::get('/user/{id}', [UserController::class, 'profile'])->name('user.profile');
+//Route::get('/user/edit/{id}', [UserController::class, 'editProfile'])->name('edit.profile');
+//Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
 Route::get('/user/{id}/download-pdf', [PdfGeneratorController::class, 'index'])->name('user.downloadPdf');
 
 Route::get('/api/users', [UserController::class, 'apiUsers'])->name('api.users');
@@ -65,3 +67,6 @@ Route::get('/news/{id}', [NewsController::class, 'show']);
 Route::put('/news/{id}', [NewsController::class, 'update']);
 Route::delete('/news/{id}', [NewsController::class, 'delete'])->name('news.delete');
 Route::patch('/news/{id}/hidden', [NewsController::class, 'hidden'])->name('news.hidden');
+
+
+require __DIR__.'/auth.php';
