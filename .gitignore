@@ -1,3 +1,7 @@
 /.env
 /code/laravel-project/storage/
 /db/
+/code/laravel-project/.env.testing
+/code/laravel-project/.env
+/code/laravel-project/vendor/
+/code/laravel-project/node_modules/
