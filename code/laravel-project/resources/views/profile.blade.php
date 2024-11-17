@@ -12,5 +12,6 @@
         </div>
 
         <a href="{{ route('edit.profile', $user->id) }}" class="btn btn-secondary mt-3">Редактировать профиль</a>
+        <a href="{{ route('user.downloadPdf', $user->id) }}" class="btn btn-primary mt-3">Скачать профиль в PDF</a>
     </div>
 @endsection

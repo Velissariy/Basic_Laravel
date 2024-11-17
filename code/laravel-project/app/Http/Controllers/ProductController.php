@@ -13,15 +13,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::paginate(10);
-        return view('products.index', compact('products'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('products.create');
+        return response()->json($products);
     }
 
     /**
@@ -48,15 +40,6 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         return response()->json($product);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        $product = Product::findOrFail($id);
-        return view('products.edit', compact('product'));
     }
 
     /**

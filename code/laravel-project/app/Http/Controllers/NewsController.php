@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewsHiddenned;
 use App\Models\News;
 use Illuminate\Http\Request;
 
@@ -59,6 +60,7 @@ class NewsController extends Controller
         $news->hidden = true;
         $news->save();
         //        return response()->json(['message' => 'News deleted successfully']);
+        event(new NewsHiddenned($news));
         return redirect()->route('news.list');
     }
 
